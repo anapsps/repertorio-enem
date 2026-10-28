@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repertório ENEM - Notícias</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Repertório ENEM - NOTÍCIAS</h1>
+</header>
+
+<section class="search-section">
+    <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
+    <button onclick="searchRepertorios()">Buscar</button>
+</section>
+
+<div class="container">
+    <aside>
+        <h3>Navegação</h3>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="temas.html">Temas</a></li>
+            <li><a href="filmes.html">Filmes</a></li>
+            <li><a href="noticias.html" class="active">Notícias</a></li>
+            <li><a href="leis.html">Leis</a></li>
+            <li><a href="livros.html">Livros</a></li>
+            <li><a href="favoritos.html">Favoritos</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+    </aside>
+    <main>
+        <div class="card">
+            <h3>Crise de saúde mental: Brasil tem maior número de afastamentos</h3>
+            <p class="fonte">Fonte: G1 - Saúde Mental</p>
+            <a class="link-noticia" href="https://g1.globo.com/trabalho-e-carreira/noticia/2025/03/10/crise-de-saude-mental-brasil-tem-maior-numero-de-afastamentos-por-ansiedade-e-depressao-em-10-anos.ghtml" target="_blank" rel="noopener noreferrer">Ler notícia completa →</a>
+        </div>
+        <div class="card">
+            <h3>Não é inteligência e não é artificial</h3>
+            <p class="fonte">Fonte: Jornal da USP - Inteligência Artificial</p>
+            <a class="link-noticia" href="https://jornal.usp.br/radio-usp/nao-e-inteligencia-e-nao-e-artificial/" target="_blank" rel="noopener noreferrer">Ler notícia completa →</a>
+        </div>
+        <div class="card">
+            <h3>Aumentam alternativas de transportes sustentáveis, mas poucas são acessíveis</h3>
+            <p class="fonte">Fonte: Jornal da USP - Questões Climáticas</p>
+            <a class="link-noticia" href="https://jornal.usp.br/atualidades/aumentam-alternativas-de-transportes-sustentaveis-mas-poucas-sao-acessiveis/" target="_blank" rel="noopener noreferrer">Ler notícia completa →</a>
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

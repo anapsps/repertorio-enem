@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repertório ENEM - Leis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Repertório ENEM - LEIS</h1>
+</header>
+
+<section class="search-section">
+    <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
+    <button onclick="searchRepertorios()">Buscar</button>
+</section>
+
+<div class="container">
+    <aside>
+        <h3>Navegação</h3>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="temas.html">Temas</a></li>
+            <li><a href="filmes.html">Filmes</a></li>
+            <li><a href="noticias.html">Notícias</a></li>
+            <li><a href="leis.html" class="active">Leis</a></li>
+            <li><a href="livros.html">Livros</a></li>
+            <li><a href="favoritos.html">Favoritos</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+    </aside>
+    <main>
+        <div class="card">
+            <h3>Lei Maria da Penha</h3>
+            <p class="fonte">Tema: Violência contra a mulher.</p>
+            <a class="link-noticia" href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener noreferrer">Ler lei completa →</a>
+        </div>
+        <div class="card">
+            <h3>ECA</h3>
+            <p class="fonte">Tema: Direitos da criança e do adolescente.</p>
+            <a class="link-noticia" href="https://www.planalto.gov.br/ccivil_03/leis/l8069.htm" target="_blank" rel="noopener noreferrer">Ler lei completa →</a>
+        </div>
+        <div class="card">
+            <h3>Lei Brasileira de Inclusão</h3>
+            <p class="fonte">Tema: Acessibilidade e inclusão.</p>
+            <a class="link-noticia" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm" target="_blank" rel="noopener noreferrer">Ler lei completa →</a>
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

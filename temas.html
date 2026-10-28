@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repertório ENEM - Temas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Repertório ENEM - TEMAS </h1>
+</header>
+
+<section class="search-section">
+    <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
+    <button onclick="searchRepertorios()">Buscar</button>
+</section>
+
+<div class="container">
+    <aside>
+        <h3>Navegação</h3>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="temas.html" class="active">Temas</a></li>
+            <li><a href="filmes.html">Filmes</a></li>
+            <li><a href="noticias.html">Notícias</a></li>
+            <li><a href="leis.html">Leis</a></li>
+            <li><a href="livros.html">Livros</a></li>
+            <li><a href="favoritos.html">Favoritos</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <div class="card" data-theme="Saúde">
+            <h3>Saúde Mental</h3>
+            <p>Repertórios sobre saúde mental, dados oficiais, leis e exemplos para redação.</p>
+            <button class="fav-btn" onclick="toggleFavorite(this)">☆ Favoritar</button>
+        </div>
+
+        <div class="card" data-theme="Tecnologia">
+            <h3>Inteligência Artificial</h3>
+            <p>Impactos da IA no mundo do trabalho e na sociedade contemporânea.</p>
+            <button class="fav-btn" onclick="toggleFavorite(this)">☆ Favoritar</button>
+        </div>
+    </main>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

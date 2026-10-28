@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repertório ENEM - Livros</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Repertório ENEM - LIVROS</h1>
+</header>
+
+<section class="search-section">
+    <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
+    <button onclick="searchRepertorios()">Buscar</button>
+</section>
+
+<div class="container">
+    <aside>
+        <h3>Navegação</h3>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="temas.html">Temas</a></li>
+            <li><a href="filmes.html">Filmes</a></li>
+            <li><a href="noticias.html">Notícias</a></li>
+            <li><a href="leis.html">Leis</a></li>
+            <li><a href="livros.html" class="active">Livros</a></li>
+            <li><a href="favoritos.html">Favoritos</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+    </aside>
+    <main>
+        <div class="card">
+            <img src="img1.png" alt="Capa do livro 1984">
+            <h3>1984</h3>
+            <p>Tema: Controle social e vigilância.</p>
+        </div>
+        <div class="card">
+            <img src="img2.png" alt="Capa do livro Quarto de Despejo">
+            <h3>Quarto de Despejo</h3>
+            <p>Tema: Desigualdade social.</p>
+        </div>
+        <div class="card">
+            <img src="img3.png" alt="Capa do livro Vidas Secas">
+            <h3>Vidas Secas</h3>
+            <p>Tema: Pobreza e seca.</p>
+        </div>
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
