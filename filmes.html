@@ -1,4 +1,3 @@
--->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -69,6 +68,22 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+        }
+
+        /* Mantém a capa ao lado do texto em telas maiores */
+        @media (min-width: 600px) {
+            main .card {
+                flex-direction: row !important;
+                align-items: center !important;
+            }
+
+            main .card img {
+                width: 140px !important;
+                height: 210px !important;
+                align-self: auto !important;
+                margin: 0 !important;
+                flex-shrink: 0 !important;
+            }
         }
 
         .search-section {
@@ -207,8 +222,7 @@
         });
 
         btnContraste.addEventListener('click', function() {
-            document.body.classList.toggle('alto-contraste');
-            const ativo = document.body.classList.contains('alto-contraste');
+            const ativo = document.body.classList.toggle('alto-contraste');
             btnContraste.setAttribute('aria-pressed', ativo);
         });
     });
@@ -216,7 +230,7 @@
 
 <script src="script.js"></script>
 
-<!-- Script da Busca (por último, com nome próprio) -->
+<!-- Script da Busca -->
 <script>
     (function () {
         var campo = document.getElementById("searchInput");
