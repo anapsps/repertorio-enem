@@ -3,23 +3,28 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
 -->
-
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repertório ENEM - Sobre</title>
+    <title>Repertório Enem - Sobre</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <h1>Repertório ENEM - SOBRE </h1>
+    <h1>Repertório Enem - Sobre </h1>
+<!-- Barra de Acessibilidade -->
+<div class="acessibilidade">
+    <button id="btn-diminuir" aria-label="Diminuir tamanho da fonte">A-</button>
+    <button id="btn-aumentar" aria-label="Aumentar tamanho da fonte">A+</button>
+    <button id="btn-contraste" aria-label="Alternar alto contraste" aria-pressed="false">Contraste</button>
+</div>
+
 </header>
 
 <div class="container">
     <aside>
-        <h3>Navegação</h3>
         <ul>
             <li><a href="index.html">Início</a></li>
             <li><a href="temas.html">Temas</a></li>
@@ -27,7 +32,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <li><a href="noticias.html">Notícias</a></li>
             <li><a href="leis.html">Leis</a></li>
             <li><a href="livros.html">Livros</a></li>
-            <li><a href="favoritos.html">Favoritos</a></li>
             <li><a href="sobre.html" class="active">Sobre</a></li>
         </ul>
     </aside>
@@ -43,6 +47,141 @@ Diferentemente de outras plataformas educacionais que oferecem conteúdos de div
     </main>
 </div>
 
+<style>
+    main > section.card {
+        display: block;
+    }
+     
+        /* ===== Barra de acessibilidade compacta (canto superior direito) ===== */
+        header {
+            position: relative;
+        }
+
+        .acessibilidade {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            display: flex;
+            gap: 4px;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+        }
+
+        .acessibilidade button {
+            padding: 3px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .acessibilidade button:hover,
+        .acessibilidade button:focus-visible {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        @media (max-width: 600px) {
+            .acessibilidade {
+                position: static;
+                justify-content: flex-end;
+                margin-top: 6px;
+            }
+        }
+
+        /* ===== Estilos da página Livros ===== */
+        .card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+        }
+
+        .card img {
+            width: 140px;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(15, 61, 99, 0.18);
+            flex-shrink: 0;
+            margin: 0;
+        }
+
+        .card .conteudo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .search-section {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin: 0 0 20px 0;
+            box-sizing: border-box;
+        }
+
+        .search-section input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #d6e9f7;
+            border-radius: 12px 0 0 12px;
+            font-size: 16px;
+        }
+
+        .search-section button {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 0 12px 12px 0;
+            background-color: #5aade0;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+    </style>
+
+
+<!-- Script de Acessibilidade -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const btnAumentar = document.getElementById('btn-aumentar');
+        const btnDiminuir = document.getElementById('btn-diminuir');
+        const btnContraste = document.getElementById('btn-contraste');
+        const htmlElement = document.documentElement;
+
+        let tamanhoAtual = 16; // Tamanho padrão em pixels
+
+        // Função para aumentar a letra
+        btnAumentar.addEventListener('click', function() {
+            if (tamanhoAtual < 24) { 
+                tamanhoAtual += 2;
+                htmlElement.style.fontSize = tamanhoAtual + 'px';
+            }
+        });
+
+        // Função para diminuir a letra
+        btnDiminuir.addEventListener('click', function() {
+            if (tamanhoAtual > 12) { 
+                tamanhoAtual -= 2;
+                htmlElement.style.fontSize = tamanhoAtual + 'px';
+            }
+        });
+
+        // Função para ativar/desativar o Alto Contraste
+        btnContraste.addEventListener('click', function() {
+            document.body.classList.toggle('alto-contraste');
+            const ativo = document.body.classList.contains('alto-contraste');
+            btnContraste.setAttribute('aria-pressed', ativo);
+        });
+    });
+</script>
 
 </body>
 </html>
