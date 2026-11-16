@@ -1,29 +1,133 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repertório ENEM - Leis</title>
+    <title>Repertório Enem - Leis</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== Barra de acessibilidade compacta (canto superior direito) ===== */
+        header {
+            position: relative;
+        }
+
+        .acessibilidade {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            display: flex;
+            gap: 4px;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+        }
+
+        .acessibilidade button {
+            padding: 3px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .acessibilidade button:hover,
+        .acessibilidade button:focus-visible {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        @media (max-width: 600px) {
+            .acessibilidade {
+                position: static;
+                justify-content: flex-end;
+                margin-top: 6px;
+            }
+        }
+
+        /* ===== Estilos da página Leis ===== */
+        .card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+        }
+
+        .card img {
+            width: 140px;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(15, 61, 99, 0.18);
+            flex-shrink: 0;
+            margin: 0;
+        }
+
+        .card .conteudo {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .search-section {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin: 0 0 20px 0;
+            box-sizing: border-box;
+        }
+
+        .search-section input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #d6e9f7;
+            border-radius: 12px 0 0 12px;
+            font-size: 16px;
+        }
+
+        .search-section button {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 0 12px 12px 0;
+            background-color: #5aade0;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+
+        /* Esconde os cards que não combinam com a busca */
+        main .card.oculto {
+            display: none !important;
+        }
+
+        #status-busca {
+            margin: -10px 0 15px 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <h1>Repertório ENEM - LEIS</h1>
-</header>
 
-<section class="search-section">
-    <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
-    <button onclick="searchRepertorios()">Buscar</button>
-</section>
+<header>
+    <h1>Repertório Enem - Leis</h1>
+
+    <!-- Barra de Acessibilidade -->
+    <div class="acessibilidade">
+        <button id="btn-diminuir" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button id="btn-aumentar" aria-label="Aumentar tamanho da fonte">A+</button>
+        <button id="btn-contraste" aria-label="Alternar alto contraste" aria-pressed="false">Contraste</button>
+    </div>
+</header>
 
 <div class="container">
     <aside>
-        <h3>Navegação</h3>
         <ul>
             <li><a href="index.html">Início</a></li>
             <li><a href="temas.html">Temas</a></li>
@@ -31,29 +135,119 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <li><a href="noticias.html">Notícias</a></li>
             <li><a href="leis.html" class="active">Leis</a></li>
             <li><a href="livros.html">Livros</a></li>
-            <li><a href="favoritos.html">Favoritos</a></li>
             <li><a href="sobre.html">Sobre</a></li>
         </ul>
     </aside>
+
     <main>
+        <section class="search-section">
+            <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
+            <button type="button" id="btnBuscar">Buscar</button>
+        </section>
+        <p id="status-busca">Digite para filtrar as leis.</p>
+
         <div class="card">
-            <h3>Lei Maria da Penha</h3>
-            <p class="fonte">Tema: Violência contra a mulher.</p>
-            <a class="link-noticia" href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener noreferrer">Ler lei completa →</a>
+            <img src="img9.png" alt="Imagem ilustrativa da Lei Maria da Penha"/>
+
+            <div class="conteudo">
+                <h3>Lei Maria da Penha</h3>
+                <p class="fonte">Tema: Violência contra a mulher.</p>
+                <a class="link-noticia" href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener noreferrer">Ler lei completa →</a>
+            </div>
         </div>
+
         <div class="card">
-            <h3>ECA</h3>
-            <p class="fonte">Tema: Direitos da criança e do adolescente.</p>
-            <a class="link-noticia" href="https://www.planalto.gov.br/ccivil_03/leis/l8069.htm" target="_blank" rel="noopener noreferrer">Ler lei completa →</a>
+            <img src="img7.png" alt="Imagem ilustrativa do ECA"/>
+
+            <div class="conteudo">
+                <h3>ECA</h3>
+                <p class="fonte">Tema: Direitos da criança e do adolescente.</p>
+                <a class="link-noticia" href="https://www.planalto.gov.br/ccivil_03/leis/l8069.htm" target="_blank" rel="noopener noreferrer">Ler lei completa →</a>
+            </div>
         </div>
+
         <div class="card">
-            <h3>Lei Brasileira de Inclusão</h3>
-            <p class="fonte">Tema: Acessibilidade e inclusão.</p>
-            <a class="link-noticia" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm" target="_blank" rel="noopener noreferrer">Ler lei completa →</a>
+            <img src="img8.png" alt="Imagem ilustrativa da Lei Brasileira de Inclusão"/>
+
+            <div class="conteudo">
+                <h3>Lei Brasileira de Inclusão</h3>
+                <p class="fonte">Tema: Acessibilidade e inclusão.</p>
+                <a class="link-noticia" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm" target="_blank" rel="noopener noreferrer">Ler lei completa →</a>
+            </div>
         </div>
     </main>
 </div>
 
+<!-- Script de Acessibilidade -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const btnAumentar = document.getElementById('btn-aumentar');
+        const btnDiminuir = document.getElementById('btn-diminuir');
+        const btnContraste = document.getElementById('btn-contraste');
+        const htmlElement = document.documentElement;
+
+        let tamanhoAtual = 16; // Tamanho padrão em pixels
+
+        btnAumentar.addEventListener('click', function() {
+            if (tamanhoAtual < 24) {
+                tamanhoAtual += 2;
+                htmlElement.style.fontSize = tamanhoAtual + 'px';
+            }
+        });
+
+        btnDiminuir.addEventListener('click', function() {
+            if (tamanhoAtual > 12) {
+                tamanhoAtual -= 2;
+                htmlElement.style.fontSize = tamanhoAtual + 'px';
+            }
+        });
+
+        btnContraste.addEventListener('click', function() {
+            document.body.classList.toggle('alto-contraste');
+            const ativo = document.body.classList.contains('alto-contraste');
+            btnContraste.setAttribute('aria-pressed', ativo);
+        });
+    });
+</script>
+
 <script src="script.js"></script>
+
+<!-- Script da Busca -->
+<script>
+    (function () {
+        var campo = document.getElementById("searchInput");
+        var botao = document.getElementById("btnBuscar");
+        var status = document.getElementById("status-busca");
+        var cards = document.querySelectorAll("main .card");
+
+        function limpar(texto) {
+            return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function filtrarCards() {
+            var termo = limpar(campo.value.trim());
+            var visiveis = 0;
+
+            for (var i = 0; i < cards.length; i++) {
+                var combina = termo === "" || limpar(cards[i].textContent).indexOf(termo) !== -1;
+                if (combina) {
+                    cards[i].classList.remove("oculto");
+                    visiveis++;
+                } else {
+                    cards[i].classList.add("oculto");
+                }
+            }
+
+            status.textContent = termo === ""
+                ? "Digite para filtrar as leis."
+                : "Mostrando " + visiveis + " de " + cards.length + " resultado(s).";
+        }
+
+        campo.addEventListener("input", filtrarCards);
+        campo.addEventListener("keyup", filtrarCards);
+        botao.addEventListener("click", filtrarCards);
+    })();
+</script>
+
 </body>
 </html>
