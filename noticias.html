@@ -1,29 +1,121 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repertório ENEM - Notícias</title>
+    <title>Repertório Enem - Notícias</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== Barra de acessibilidade compacta (canto superior direito) ===== */
+        header {
+            position: relative;
+        }
+
+        .acessibilidade {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            display: flex;
+            gap: 4px;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+        }
+
+        .acessibilidade button {
+            padding: 3px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .acessibilidade button:hover,
+        .acessibilidade button:focus-visible {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        @media (max-width: 600px) {
+            .acessibilidade {
+                position: static;
+                justify-content: flex-end;
+                margin-top: 6px;
+            }
+        }
+
+        /* ===== Estilos da página Notícias ===== */
+        .search-section {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin: 0 0 20px 0;
+            box-sizing: border-box;
+        }
+
+        .search-section input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #d6e9f7;
+            border-radius: 12px 0 0 12px;
+            font-size: 16px;
+        }
+
+        .search-section button {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 0 12px 12px 0;
+            background-color: #5aade0;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+
+        .card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .card h3,
+        .card .fonte {
+            margin: 0;
+        }
+
+        /* Esconde os cards que não combinam com a busca */
+        main .card.oculto {
+            display: none !important;
+        }
+
+        #status-busca {
+            margin: -10px 0 15px 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <h1>Repertório ENEM - NOTÍCIAS</h1>
-</header>
 
-<section class="search-section">
-    <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
-    <button onclick="searchRepertorios()">Buscar</button>
-</section>
+<header>
+    <h1>Repertório Enem - Notícias</h1>
+
+    <!-- Barra de Acessibilidade -->
+    <div class="acessibilidade">
+        <button id="btn-diminuir" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button id="btn-aumentar" aria-label="Aumentar tamanho da fonte">A+</button>
+        <button id="btn-contraste" aria-label="Alternar alto contraste" aria-pressed="false">Contraste</button>
+    </div>
+</header>
 
 <div class="container">
     <aside>
-        <h3>Navegação</h3>
         <ul>
             <li><a href="index.html">Início</a></li>
             <li><a href="temas.html">Temas</a></li>
@@ -31,21 +123,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <li><a href="noticias.html" class="active">Notícias</a></li>
             <li><a href="leis.html">Leis</a></li>
             <li><a href="livros.html">Livros</a></li>
-            <li><a href="favoritos.html">Favoritos</a></li>
             <li><a href="sobre.html">Sobre</a></li>
         </ul>
     </aside>
+
     <main>
+        <section class="search-section">
+            <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
+            <button type="button" id="btnBuscar">Buscar</button>
+        </section>
+        <p id="status-busca">Digite para filtrar as notícias.</p>
+
         <div class="card">
             <h3>Crise de saúde mental: Brasil tem maior número de afastamentos</h3>
             <p class="fonte">Fonte: G1 - Saúde Mental</p>
             <a class="link-noticia" href="https://g1.globo.com/trabalho-e-carreira/noticia/2025/03/10/crise-de-saude-mental-brasil-tem-maior-numero-de-afastamentos-por-ansiedade-e-depressao-em-10-anos.ghtml" target="_blank" rel="noopener noreferrer">Ler notícia completa →</a>
         </div>
+
         <div class="card">
             <h3>Não é inteligência e não é artificial</h3>
             <p class="fonte">Fonte: Jornal da USP - Inteligência Artificial</p>
             <a class="link-noticia" href="https://jornal.usp.br/radio-usp/nao-e-inteligencia-e-nao-e-artificial/" target="_blank" rel="noopener noreferrer">Ler notícia completa →</a>
         </div>
+
         <div class="card">
             <h3>Aumentam alternativas de transportes sustentáveis, mas poucas são acessíveis</h3>
             <p class="fonte">Fonte: Jornal da USP - Questões Climáticas</p>
@@ -54,6 +154,76 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </main>
 </div>
 
+<!-- Script de Acessibilidade -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const btnAumentar = document.getElementById('btn-aumentar');
+        const btnDiminuir = document.getElementById('btn-diminuir');
+        const btnContraste = document.getElementById('btn-contraste');
+        const htmlElement = document.documentElement;
+
+        let tamanhoAtual = 16; // Tamanho padrão em pixels
+
+        btnAumentar.addEventListener('click', function() {
+            if (tamanhoAtual < 24) {
+                tamanhoAtual += 2;
+                htmlElement.style.fontSize = tamanhoAtual + 'px';
+            }
+        });
+
+        btnDiminuir.addEventListener('click', function() {
+            if (tamanhoAtual > 12) {
+                tamanhoAtual -= 2;
+                htmlElement.style.fontSize = tamanhoAtual + 'px';
+            }
+        });
+
+        btnContraste.addEventListener('click', function() {
+            document.body.classList.toggle('alto-contraste');
+            const ativo = document.body.classList.contains('alto-contraste');
+            btnContraste.setAttribute('aria-pressed', ativo);
+        });
+    });
+</script>
+
 <script src="script.js"></script>
+
+<!-- Script da Busca -->
+<script>
+    (function () {
+        var campo = document.getElementById("searchInput");
+        var botao = document.getElementById("btnBuscar");
+        var status = document.getElementById("status-busca");
+        var cards = document.querySelectorAll("main .card");
+
+        function limpar(texto) {
+            return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function filtrarCards() {
+            var termo = limpar(campo.value.trim());
+            var visiveis = 0;
+
+            for (var i = 0; i < cards.length; i++) {
+                var combina = termo === "" || limpar(cards[i].textContent).indexOf(termo) !== -1;
+                if (combina) {
+                    cards[i].classList.remove("oculto");
+                    visiveis++;
+                } else {
+                    cards[i].classList.add("oculto");
+                }
+            }
+
+            status.textContent = termo === ""
+                ? "Digite para filtrar as notícias."
+                : "Mostrando " + visiveis + " de " + cards.length + " resultado(s).";
+        }
+
+        campo.addEventListener("input", filtrarCards);
+        campo.addEventListener("keyup", filtrarCards);
+        botao.addEventListener("click", filtrarCards);
+    })();
+</script>
+
 </body>
 </html>
