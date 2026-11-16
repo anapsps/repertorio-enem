@@ -1,29 +1,67 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repertório ENEM - Início</title>
+    <title>Repertório Enem - Início</title>
     <link rel="stylesheet" href="style.css">
+
+    <!-- Barra de acessibilidade compacta no canto superior direito -->
+    <style>
+        header {
+            position: relative;
+        }
+
+        .acessibilidade {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            display: flex;
+            gap: 4px;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+        }
+
+        .acessibilidade button {
+            padding: 3px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .acessibilidade button:hover,
+        .acessibilidade button:focus-visible {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        @media (max-width: 600px) {
+            .acessibilidade {
+                position: static;
+                justify-content: flex-end;
+                margin-top: 6px;
+            }
+        }
+    </style>
 </head>
 <body>
-<header>
-    <h1>Repertório ENEM - INÍCIO</h1>
-</header>
 
-<section class="search-section">
-    <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
-    <button onclick="searchRepertorios()">Buscar</button>
-</section>
+<header>
+    <h1>Repertório Enem - Início</h1>
+
+    <!-- Barra de Acessibilidade -->
+    <div class="acessibilidade">
+        <button id="btn-diminuir" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button id="btn-aumentar" aria-label="Aumentar tamanho da fonte">A+</button>
+        <button id="btn-contraste" aria-label="Alternar alto contraste" aria-pressed="false">Contraste</button>
+    </div>
+</header>
 
 <div class="container">
     <aside>
-        <h3>Navegação</h3>
         <ul>
             <li><a href="index.html" class="active">Início</a></li>
             <li><a href="temas.html">Temas</a></li>
@@ -31,30 +69,85 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <li><a href="noticias.html">Notícias</a></li>
             <li><a href="leis.html">Leis</a></li>
             <li><a href="livros.html">Livros</a></li>
-            <li><a href="favoritos.html">Favoritos</a></li>
             <li><a href="sobre.html">Sobre</a></li>
         </ul>
     </aside>
+
     <main>
         <section class="welcome">
             <h2>Bem-vindo ao Repertório ENEM!</h2>
+            <p class="texto-enem">
+                O <strong>ENEM</strong> (Exame Nacional do Ensino Médio) é a maior prova do Brasil para quem
+                quer entrar nos ensinos superiores. Criado em 1998 e aplicado pelo Inep, ele avalia o que o estudante
+                aprendeu na educação básica, em quatro áreas do conhecimento (Linguagens, Matemática,
+                Ciências Humanas e Ciências da Natureza) e na <strong>redação</strong>, que vale até 1.000
+                pontos. A nota pode abrir portas para universidades públicas pelo Sisu, bolsas pelo Prouni e
+                financiamento pelo Fies. Em 2026, as provas acontecem nos dias 8 e 15 de novembro.
+            </p>
             <p>Encontre repertórios confiáveis e organizados por tema para melhorar sua redação do ENEM.</p>
         </section>
+
         <div class="card">
-            <h3>Saúde Mental</h3>
-            <p>Dados, leis e reportagens sobre saúde mental.</p>
-        </div>
-        <div class="card">
-            <h3>Educação Inclusiva</h3>
-            <p>Repertórios sobre inclusão e políticas educacionais.</p>
-        </div>
-        <div class="card">
-            <h3>Inteligência Artificial</h3>
-            <p>Impactos da IA na sociedade e no trabalho.</p>
+            <div class="card-conteudo">
+                <p class="texto-cartilha">
+                    A <strong>Cartilha do Participante</strong> é um material gratuito do Inep que explica como a
+                    redação do ENEM é corrigida. Ela detalha as <strong>cinco competências</strong> avaliadas
+                    (cada uma vale até 200 pontos, somando 1.000), mostra os motivos que podem zerar o texto e traz
+                    exemplos de redações bem avaliadas, com comentários pedagógicos. A edição de 2026 também alerta
+                    contra o <strong>"repertório de bolso"</strong>: referências decoradas e usadas de forma
+                    genérica, sem ligação real com o tema. Existem ainda versões para participantes com dislexia,
+                    TEA e deficiência auditiva. Vale a leitura antes de montar o seu repertório!
+                </p>
+                <a class="btn-cartilha"
+                   href="https://www.gov.br"
+                   target="_blank" rel="noopener noreferrer">
+                    Cartilha do Participante - Redação ENEM 2026
+                </a>
+            </div>
         </div>
     </main>
 </div>
 
+<!-- O script de acessibilidade fica ANTES para evitar que erros de outros arquivos o bloqueiem -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const btnAumentar = document.getElementById('btn-aumentar');
+        const btnDiminuir = document.getElementById('btn-diminuir');
+        const btnContraste = document.getElementById('btn-contraste');
+        const htmlElement = document.documentElement;
+
+        let tamanhoAtual = 16;
+
+        if (btnAumentar) {
+            btnAumentar.addEventListener('click', function() {
+                if (tamanhoAtual < 24) {
+                    tamanhoAtual += 2;
+                    htmlElement.style.fontSize = tamanhoAtual + 'px';
+                }
+            });
+        }
+
+        if (btnDiminuir) {
+            btnDiminuir.addEventListener('click', function() {
+                if (tamanhoAtual > 12) {
+                    tamanhoAtual -= 2;
+                    htmlElement.style.fontSize = tamanhoAtual + 'px';
+                }
+            });
+        }
+
+        if (btnContraste) {
+            btnContraste.addEventListener('click', function() {
+                document.body.classList.toggle('alto-contraste');
+                const ativo = document.body.classList.contains('alto-contraste');
+                btnContraste.setAttribute('aria-pressed', ativo);
+            });
+        }
+    });
+</script>
+
+<!-- Seus scripts antigos ficam aqui embaixo -->
 <script src="script.js"></script>
+
 </body>
 </html>
