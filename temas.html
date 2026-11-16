@@ -1,29 +1,121 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repertório ENEM - Temas</title>
+    <title>Repertório Enem - Temas</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ===== Barra de acessibilidade compacta (canto superior direito) ===== */
+        header {
+            position: relative;
+        }
+
+        .acessibilidade {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            display: flex;
+            gap: 4px;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+        }
+
+        .acessibilidade button {
+            padding: 3px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .acessibilidade button:hover,
+        .acessibilidade button:focus-visible {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        @media (max-width: 600px) {
+            .acessibilidade {
+                position: static;
+                justify-content: flex-end;
+                margin-top: 6px;
+            }
+        }
+
+        /* ===== Estilos da página Temas ===== */
+        .search-section {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin: 0 0 20px 0;
+            box-sizing: border-box;
+        }
+
+        .search-section input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #d6e9f7;
+            border-radius: 12px 0 0 12px;
+            font-size: 16px;
+        }
+
+        .search-section button {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 0 12px 12px 0;
+            background-color: #5aade0;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+
+        .card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .card h3,
+        .card p {
+            margin: 0;
+        }
+
+        /* Esconde os cards que não combinam com a busca */
+        main .card.oculto {
+            display: none !important;
+        }
+
+        #status-busca {
+            margin: -10px 0 15px 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <h1>Repertório ENEM - TEMAS </h1>
-</header>
+    <h1>Repertório Enem - Temas</h1>
 
-<section class="search-section">
-    <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
-    <button onclick="searchRepertorios()">Buscar</button>
-</section>
+    <!-- Barra de Acessibilidade -->
+    <div class="acessibilidade">
+        <button id="btn-diminuir" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button id="btn-aumentar" aria-label="Aumentar tamanho da fonte">A+</button>
+        <button id="btn-contraste" aria-label="Alternar alto contraste" aria-pressed="false">Contraste</button>
+    </div>
+</header>
 
 <div class="container">
     <aside>
-        <h3>Navegação</h3>
         <ul>
             <li><a href="index.html">Início</a></li>
             <li><a href="temas.html" class="active">Temas</a></li>
@@ -31,27 +123,148 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <li><a href="noticias.html">Notícias</a></li>
             <li><a href="leis.html">Leis</a></li>
             <li><a href="livros.html">Livros</a></li>
-            <li><a href="favoritos.html">Favoritos</a></li>
             <li><a href="sobre.html">Sobre</a></li>
         </ul>
     </aside>
 
     <main>
-        <div class="card" data-theme="Saúde">
+        <section class="search-section">
+            <input type="text" id="searchInput" placeholder="Pesquisar por tema ou palavra-chave...">
+            <button type="button" id="btnBuscar">Buscar</button>
+        </section>
+        <p id="status-busca">Digite para filtrar os temas.</p>
+
+        <div class="card tema-link" data-theme="Saúde" data-tema="saude-mental">
             <h3>Saúde Mental</h3>
             <p>Repertórios sobre saúde mental, dados oficiais, leis e exemplos para redação.</p>
-            <button class="fav-btn" onclick="toggleFavorite(this)">☆ Favoritar</button>
         </div>
 
-        <div class="card" data-theme="Tecnologia">
+        <div class="card tema-link" data-theme="Tecnologia" data-tema="inteligencia-artificial">
             <h3>Inteligência Artificial</h3>
             <p>Impactos da IA no mundo do trabalho e na sociedade contemporânea.</p>
-            <button class="fav-btn" onclick="toggleFavorite(this)">☆ Favoritar</button>
+        </div>
+
+        <div class="card tema-link" data-theme="Alimentação" data-tema="segurança-alimentar">
+            <h3>Segurança Alimentar/Alimentação</h3>
+            <p>Segurança alimentar e os desafios do acesso à alimentação adequada na sociedade brasileira.</p>
+        </div>
+
+        <div class="card tema-link" data-theme="Tecnologia" data-tema="mundo-digital">
+            <h3>Mundo Digital/Inteligência Artificial</h3>
+            <p>Mundo digital e os avanços da inteligência artificial nas relações sociais e profissionais.</p>
+        </div>
+
+        <div class="card tema-link" data-theme="Tecnologia" data-tema="redes-sociais">
+            <h3>Impactos Dos Usos De Redes Sociais</h3>
+            <p>Os desafios e as consequências do uso das redes sociais na atualidade.</p>
+        </div>
+
+        <div class="card tema-link" data-theme="Envelhecimento" data-tema="envelhecimento-populacional">
+            <h3>Envelhecimento Populacional</h3>
+            <p>Envelhecimento populacional e os desafios sociais relacionados à qualidade de vida na terceira idade.</p>
+        </div>
+
+        <div class="card tema-link" data-theme="Consumismo" data-tema="consumo-excessivo">
+            <h3>Consumismo</h3>
+            <p>Consumismo e os impactos do consumo excessivo na sociedade contemporânea.</p>
+        </div>
+
+        <div class="card tema-link" data-theme="Meio Ambiente" data-tema="questões-climáticas">
+            <h3>Questões Climáticas/Ambientais</h3>
+            <p>Mudanças climáticas e suas consequências para o equilíbrio ambiental e a vida em sociedade.</p>
+        </div>
+
+        <div class="card tema-link" data-theme="Gênero" data-tema="questões-de-gênero">
+            <h3>Relações/Questões De Gênero</h3>
+            <p>Relações de gênero e a busca por equidade e reconhecimento social.</p>
+        </div>
+
+        <div class="card tema-link" data-theme="Leitura" data-tema="leitura-brasil">
+            <h3>A Questão Da Leitura No Brasil</h3>
+            <p>A importância do incentivo à leitura e seus reflexos na educação brasileira.</p>
         </div>
     </main>
 </div>
 
+<!-- Clique nos cards de tema -->
+<script>
+    document.querySelectorAll('.tema-link').forEach(function (card) {
+        card.addEventListener('click', function () {
+            window.location.href = 'tema.html?tema=' + card.dataset.tema;
+        });
+    });
+</script>
+
+<!-- Script de Acessibilidade -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const btnAumentar = document.getElementById('btn-aumentar');
+        const btnDiminuir = document.getElementById('btn-diminuir');
+        const btnContraste = document.getElementById('btn-contraste');
+        const htmlElement = document.documentElement;
+
+        let tamanhoAtual = 16; // Tamanho padrão em pixels
+
+        btnAumentar.addEventListener('click', function() {
+            if (tamanhoAtual < 24) {
+                tamanhoAtual += 2;
+                htmlElement.style.fontSize = tamanhoAtual + 'px';
+            }
+        });
+
+        btnDiminuir.addEventListener('click', function() {
+            if (tamanhoAtual > 12) {
+                tamanhoAtual -= 2;
+                htmlElement.style.fontSize = tamanhoAtual + 'px';
+            }
+        });
+
+        btnContraste.addEventListener('click', function() {
+            document.body.classList.toggle('alto-contraste');
+            const ativo = document.body.classList.contains('alto-contraste');
+            btnContraste.setAttribute('aria-pressed', ativo);
+        });
+    });
+</script>
 
 <script src="script.js"></script>
+
+<!-- Script da Busca -->
+<script>
+    (function () {
+        var campo = document.getElementById("searchInput");
+        var botao = document.getElementById("btnBuscar");
+        var status = document.getElementById("status-busca");
+        var cards = document.querySelectorAll("main .card");
+
+        function limpar(texto) {
+            return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function filtrarCards() {
+            var termo = limpar(campo.value.trim());
+            var visiveis = 0;
+
+            for (var i = 0; i < cards.length; i++) {
+                var combina = termo === "" || limpar(cards[i].textContent).indexOf(termo) !== -1;
+                if (combina) {
+                    cards[i].classList.remove("oculto");
+                    visiveis++;
+                } else {
+                    cards[i].classList.add("oculto");
+                }
+            }
+
+            status.textContent = termo === ""
+                ? "Digite para filtrar os temas."
+                : "Mostrando " + visiveis + " de " + cards.length + " resultado(s).";
+        }
+
+        campo.addEventListener("input", filtrarCards);
+        campo.addEventListener("keyup", filtrarCards);
+        botao.addEventListener("click", filtrarCards);
+    })();
+</script>
+
 </body>
 </html>
