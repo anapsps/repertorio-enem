@@ -1,367 +1,882 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 22 de jul. de 2026, 18:54:04
-    Author     : Usuário
-*/
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 22 de jul. de 2026, 18:54:04
-    Author     : Usuário
-*/
-* * {
+
+:root {
+    --azul-escuro: #153D68;
+    --azul: #245987;
+    --azul-claro: #DCEAF5;
+    --azul-hover: #BBD5E9;
+    --fundo: #F5F5F0;
+    --branco: #FFFFFF;
+    --texto: #263445;
+    --cinza: #64748B;
+    --borda: #D9E2EA;
+    --sombra: 0 4px 14px rgba(21, 61, 104, 0.09);
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #F8F6F2;
-    color: #1E293B;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: var(--fundo);
+    color: var(--texto);
     line-height: 1.6;
 }
 
-/* Header */
-header {
-    background: #0F3D63;
+/* ================================
+   ACESSIBILIDADE
+================================ */
+
+.pular-conteudo {
+    position: absolute;
+    top: -100px;
+    left: 15px;
+    z-index: 1000;
+    padding: 10px 16px;
+    background: var(--azul-escuro);
     color: white;
-    padding: 18px 40px;
+    border-radius: 6px;
+}
+
+.pular-conteudo:focus {
+    top: 10px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid #E39B36;
+    outline-offset: 3px;
+}
+
+/* Barra de acessibilidade (A-, A+, Contraste) */
+
+.acessibilidade {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    gap: 10px;
+    padding: 12px 35px;
+    background: #EAF3FA;
+}
+
+.acessibilidade button {
+    min-width: 45px;
+    min-height: 42px;
+    padding: 8px 12px;
+    border: 2px solid var(--azul-hover);
+    border-radius: 8px;
+    background: var(--azul-claro);
+    color: var(--azul-escuro);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.acessibilidade button:hover {
+    background: var(--azul-hover);
+}
+
+/* Botão de contraste quando está ativado */
+.acessibilidade button[aria-pressed="true"] {
+    background: var(--azul-escuro);
+    border-color: var(--azul-escuro);
+    color: white;
+}
+
+/* ================================
+   CABEÇALHO
+================================ */
+
+header {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 25px 40px;
+    background: var(--azul-escuro);
+    color: white;
 }
 
 header h1 {
-    font-size: 30px;
+    font-size: 1.8rem;
     font-weight: 700;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 25px;
-    font-weight: 500;
-    transition: color 0.3s;
-}
+/* ================================
+   ESTRUTURA PRINCIPAL
+================================ */
 
-nav a:hover {
-    color: #A7D8F0;
-}
-
-/* Barra de pesquisa */
-.search-section {
-    display: flex;
-    justify-content: center;
-    margin: 30px auto;
-    width: 90%;
-    max-width: 1000px;
-}
-
-.search-section input {
-    width: 75%;
-    padding: 14px 18px;
-    border: 2px solid #D6EAF8;
-    border-radius: 12px 0 0 12px;
-    font-size: 16px;
-    outline: none;
-    background: white;
-}
-
-.search-section input:focus {
-    border-color: #5DADE2;
-}
-
-.search-section button {
-    padding: 14px 24px;
-    border: none;
-    background: #5DADE2;
-    color: white;
-    border-radius: 0 12px 12px 0;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s;
-}
-
-.search-section button:hover {
-    background: #3498DB;
-}
-
-/* Layout principal */
 .container {
+    width: 100%;
+    max-width: 1500px;
+    flex: 1;
     display: flex;
+    align-items: flex-start;
     gap: 25px;
-    padding: 0 40px 40px;
+    margin: 0 auto;
+    padding: 30px 35px;
+ 
+    
+    padding-left: 290px; 
 }
 
-/* Sidebar */
 aside {
-    width: 260px;
-    background: white;
-    padding: 25px;
-    border-radius: 18px;
-    box-shadow: 0 4px 12px rgba(15, 61, 99, 0.08);
-    height: fit-content;
+    position: fixed;     /* Fixa o menu na tela e impede que ele se mova ao rolar */
+    top: 140px;          /* Distância fixa do topo da tela. Ajuste esse número se precisar subir ou descer */
+    left: 35px;          /* Distância fixa da lateral esquerda da tela */
+    width: 230px;
+    min-width: 230px;
+    padding: 22px 15px;
+    background: var(--branco);
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    z-index: 100;        /* Garante que ele fique sempre por cima de textos e cards */
 }
 
-aside h3 {
-    margin-bottom: 18px;
-    color: #0F3D63;
-    font-size: 20px;
-}
 
 aside ul {
     list-style: none;
 }
 
-aside ul li {
-    margin-bottom: 12px;
+aside li {
+    margin-bottom: 8px;
 }
 
-aside ul li a {
+aside a {
+    display: block;
+    padding: 12px 15px;
+    color: var(--azul-escuro);
     text-decoration: none;
-    color: #1E293B;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-aside ul li a:hover {
-    color: #5DADE2;
-}
-
-aside ul li a.active {
-    color: #0F3D63;
-    font-weight: 700;
-    border-left: 3px solid #5DADE2;
-    padding-left: 10px;
-}
-
-.clear-btn {
-    margin-top: 20px;
-    padding: 12px;
-    width: 100%;
-    border: none;
-    background: #0F3D63;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
     font-weight: 600;
-    transition: background 0.3s;
+    border-radius: 8px;
+    transition: 0.2s;
 }
 
-.clear-btn:hover {
-    background: #0B2F4A;
+aside a:hover {
+    background: var(--azul-claro);
 }
 
-/* Conteúdo principal */
+aside a.active {
+    background: var(--azul-escuro);
+    color: white;
+}
+
 main {
     flex: 1;
+    min-width: 0;
+    padding: 10px 15px;
 }
 
+/* ================================
+   APRESENTAÇÃO
+================================ */
+
 .welcome {
-    background: linear-gradient(135deg, #D6EAF8, #A7D8F0);
-    padding: 30px;
-    border-radius: 20px;
     margin-bottom: 25px;
-    color: #0F3D63;
-    box-shadow: 0 4px 12px rgba(93, 173, 226, 0.15);
+    padding: 28px;
+    background: var(--branco);
+    border-left: 5px solid var(--azul);
+    border-radius: 12px;
+    box-shadow: var(--sombra);
 }
 
 .welcome h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    color: var(--azul-escuro);
+    font-size: 1.55rem;
 }
 
 .welcome p {
-    font-size: 17px;
-}
-
-/* Cards */
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 18px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 14px rgba(15, 61, 99, 0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(15, 61, 99, 0.12);
-}
-
-.card h3 {
-    color: #0F3D63;
-    margin-bottom: 10px;
-    font-size: 24px;
-}
-
-.card p {
-    color: #475569;
-    margin-bottom: 15px;
-}
-
-/* Detalhes dos cards (tema, síntese, disponibilidade) */
-.card .tema {
-    color: #0F3D63;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
-
-.card .sinopse {
-    color: #475569;
-    margin-bottom: 10px;
-}
-
-.card .disponivel {
-    color: #3498DB;
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 0;
-}
-
-.card .fonte {
-    color: #475569;
     margin-bottom: 12px;
 }
 
-/* Link dos cards (notícias, leis, dados) */
-.link-noticia {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 8px 14px;
-    background-color: #2E7D32;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: 0.3s;
+.welcome p:last-child {
+    margin-bottom: 0;
 }
 
-.link-noticia:hover {
-    background-color: #1B5E20;
-    transform: translateY(-2px);
+.texto-enem {
+    text-align: justify;
 }
 
-/* Tags */
-.tags span {
-    display: inline-block;
-    background: #EAF6FB;
-    color: #0F3D63;
-    padding: 7px 12px;
-    border-radius: 20px;
-    margin-right: 8px;
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: 500;
-}
+/* ================================
+   BARRA DE PESQUISA
+================================ */
 
-/* Botão favorito */
-.fav-btn {
-    margin-top: 18px;
-    padding: 10px 18px;
-    border: none;
-    background: #5DADE2;
-    color: white;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background 0.3s;
-}
-
-.fav-btn:hover {
-    background: #3498DB;
-}
-
-.fav-btn.active {
-    background: #0F3D63;
-}
-
-/* Favoritos */
-#favoritos {
-    background: white;
-    padding: 25px;
-    border-radius: 18px;
-    margin-top: 25px;
-    box-shadow: 0 4px 12px rgba(15, 61, 99, 0.08);
-}
-
-#favoritos h2 {
-    color: #0F3D63;
-    margin-bottom: 15px;
-}
-
-#favoriteList {
-    list-style: none;
-}
-
-#favoriteList li {
+.search-section,
+.busca {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px;
-    background: #F8FAFC;
-    border-radius: 8px;
-    color: #1E293B;
+    gap: 10px;
+    margin: 25px 0 12px;
 }
 
-/* Botão remover favorito */
-.remove-btn {
-    margin-left: 10px;
-    padding: 6px 12px;
+.search-section input,
+.busca input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 16px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    background: white;
+    color: var(--texto);
+    font-size: 1rem;
+}
+
+.search-section input:focus,
+.busca input:focus {
+    border-color: var(--azul);
+    outline: 2px solid var(--azul-claro);
+}
+
+.search-section button,
+.busca button {
+    padding: 12px 22px;
     border: none;
-    background: #E74C3C;
-    color: white;
     border-radius: 8px;
-    cursor: pointer;
-    font-size: 13px;
+    background: var(--azul-escuro);
+    color: white;
+    font-size: 1rem;
     font-weight: 600;
-    transition: background 0.3s;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-.remove-btn:hover {
-    background: #C0392B;
+.search-section button:hover,
+.busca button:hover {
+    background: var(--azul);
 }
 
-/* Footer */
+#mensagemBusca,
+.mensagemBusca {
+    min-height: 24px;
+    margin: 8px 0 15px;
+    color: var(--cinza);
+    font-size: 0.9rem;
+}
+
+.card[hidden] {
+    display: none !important;
+}
+
+/* ================================
+   CARDS
+================================ */
+
+.lista-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.card {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    gap: 22px;
+    margin-bottom: 20px;
+    padding: 22px;
+    background: var(--branco);
+    border: 1px solid #E8EDF2;
+    border-radius: 12px;
+    box-shadow: var(--sombra);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 18px rgba(21, 61, 104, 0.13);
+}
+
+.card img {
+    width: 200px;
+    min-width: 200px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 9px;
+}
+
+.card-conteudo {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card h3 {
+    color: var(--azul-escuro);
+    font-size: 1.25rem;
+}
+
+.card p {
+    color: var(--texto);
+    text-align: justify;
+}
+
+.card a {
+    color: var(--azul);
+    font-weight: 600;
+}
+
+.card a:hover {
+    color: var(--azul-escuro);
+}
+
+/* ================================
+   CARTILHA DO PARTICIPANTE
+================================ */
+
+.texto-cartilha {
+    margin-bottom: 12px;
+    text-align: justify;
+}
+
+.btn-cartilha {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: var(--azul-escuro);
+    color: white !important;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-cartilha:hover {
+    background: var(--azul);
+}
+
+/* ================================
+   TEMAS E CATEGORIAS
+================================ */
+
+.temas,
+.categorias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tema,
+.categoria,
+.tag {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: var(--azul-claro);
+    color: var(--azul-escuro);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ================================
+   LINKS E CONTEÚDOS
+================================ */
+
+a {
+    transition: color 0.2s, background 0.2s;
+}
+
+main h2 {
+    color: var(--azul-escuro);
+}
+
+main section {
+    margin-bottom: 22px;
+}
+
+main img {
+    max-width: 100%;
+}
+
+.texto-conteudo {
+    text-align: justify;
+    line-height: 1.8;
+}
+
+/* ================================
+   RODAPÉ
+================================ */
+
 footer {
-    display: none;
+    width: 100%;
+    padding: 22px;
+    background: var(--azul-escuro);
+    color: white;
+    text-align: center;
+    margin-top: auto;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
+/* ================================
+   ALTO CONTRASTE
+================================ */
+
+body.alto-contraste {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+/* Blocos: fundo preto, texto branco, borda branca */
+body.alto-contraste header,
+body.alto-contraste footer,
+body.alto-contraste aside,
+body.alto-contraste .welcome,
+body.alto-contraste .card {
+    background: #000 !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+    box-shadow: none !important;
+}
+
+body.alto-contraste main {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+/* Textos */
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste p,
+body.alto-contraste li,
+body.alto-contraste span,
+body.alto-contraste strong,
+body.alto-contraste small,
+body.alto-contraste label,
+body.alto-contraste #mensagemBusca,
+body.alto-contraste .mensagemBusca {
+    color: #fff !important;
+}
+
+/* Links: amarelos e sublinhados para se diferenciarem do texto */
+body.alto-contraste a {
+    color: #ffff00 !important;
+    text-decoration: underline;
+}
+
+/* Menu lateral */
+body.alto-contraste aside a:hover,
+body.alto-contraste aside a.active {
+    background: #ffff00 !important;
+    color: #000 !important;
+    text-decoration: none;
+}
+
+/* Tags de tema/categoria */
+body.alto-contraste .tema,
+body.alto-contraste .categoria,
+body.alto-contraste .tag {
+    background: #000 !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+}
+
+/* Botões */
+body.alto-contraste .btn-cartilha,
+body.alto-contraste .search-section button,
+body.alto-contraste .busca button,
+body.alto-contraste .acessibilidade button {
+    background: #ffff00 !important;
+    color: #000 !important;
+    border: 2px solid #fff !important;
+    text-decoration: none;
+}
+
+/* Campos de texto */
+body.alto-contraste input {
+    background: #000 !important;
+    color: #fff !important;
+    border: 2px solid #fff !important;
+}
+
+body.alto-contraste input::placeholder {
+    color: #ddd !important;
+}
+
+/* Barra de acessibilidade e "pular conteúdo" */
+body.alto-contraste .acessibilidade {
+    background: #000 !important;
+    border-bottom: 2px solid #fff;
+}
+
+body.alto-contraste .pular-conteudo {
+    background: #ffff00 !important;
+    color: #000 !important;
+}
+
+/* Imagens dos cards */
+body.alto-contraste .card img {
+    border: 2px solid #fff;
+}
+
+/* Foco bem visível */
+body.alto-contraste button:focus-visible,
+body.alto-contraste a:focus-visible,
+body.alto-contraste input:focus-visible {
+    outline: 3px solid #ffff00;
+    outline-offset: 3px;
+}
+
+/* ================================
+   RESPONSIVIDADE
+================================ */
+
+@media (max-width: 850px) {
+
+    .container {
+        gap: 15px;
+        padding: 20px;
+    }
+
+    aside {
+        width: 190px;
+        min-width: 190px;
+    }
+
+    main {
+        padding: 5px;
+    }
+
+    .card img {
+        width: 160px;
+        min-width: 160px;
+    }
+}
+
+@media (max-width: 650px) {
+
+    header {
+        min-height: 80px;
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 1.35rem;
+    }
+
+    .acessibilidade {
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+
+    .acessibilidade button {
+        min-width: 48px;
+        min-height: 44px;
+    }
+
     .container {
         flex-direction: column;
-        padding: 0 20px 30px;
+        padding: 15px;
     }
 
     aside {
         width: 100%;
+        min-width: 0;
+        padding: 12px;
     }
 
-    .search-section {
-        width: 95%;
+    aside ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
     }
 
-    .search-section input {
-        width: 70%;
+    aside li {
+        margin: 0;
     }
 
-    header {
+    aside a {
+        padding: 9px 12px;
+    }
+
+    main {
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .welcome {
+        padding: 20px;
+    }
+
+    .search-section,
+    .busca {
+        flex-direction: column;
+    }
+
+    .search-section button,
+    .busca button {
+        width: 100%;
+    }
+
+    .card {
         flex-direction: column;
         gap: 15px;
-        text-align: center;
+        padding: 17px;
     }
 
-    nav a {
-        margin: 0 10px;
+    .card img {
+        width: 100%;
+        min-width: 0;
+        height: 200px;
+    }
+
+    .card-conteudo {
+        width: 100%;
+    }
+
+    .texto-enem,
+    .texto-cartilha,
+    .card p {
+        text-align: left;
     }
 }
+
+/* Respeita quem prefere menos animação */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+}
+/* ==========================================================================
+   SISTEMA DE ALTO CONTRASTE (COLE NO FINAL DO SEU ARQUIVO CSS)
+   ========================================================================== */
+
+/* Quando o body tiver a classe .alto-contraste, estas regras substituem as anteriores */
+body.alto-contraste {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+/* Transforma todos os blocos estruturais em fundo preto com borda branca */
+body.alto-contraste header,
+body.alto-contraste footer,
+body.alto-contraste aside,
+body.alto-contraste main,
+body.alto-contraste .welcome,
+body.alto-contraste .card,
+body.alto-contraste .search-section,
+body.alto-contraste .busca,
+body.alto-contraste .acessibilidade {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+    box-shadow: none !important;
+}
+
+/* Força todos os textos, títulos, itens de lista e links a ficarem brancos */
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste p,
+body.alto-contraste span,
+body.alto-contraste li,
+body.alto-contraste a,
+body.alto-contraste button,
+body.alto-contraste input {
+    color: #FFFFFF !important;
+}
+
+/* Inputs de pesquisa no modo alto contraste */
+body.alto-contraste input {
+    background: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+/* Links do menu lateral (aside) quando ativos ou com mouse por cima */
+body.alto-contraste aside a:hover,
+body.alto-contraste aside a.active,
+body.alto-contraste .card a:hover,
+body.alto-contraste .acessibilidade button:hover {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+/* Botões normais ganham fundo branco e texto preto para destaque */
+body.alto-contraste button,
+body.alto-contraste .search-section button,
+body.alto-contraste .busca button,
+body.alto-contraste .btn-cartilha {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+}
+/* ==========================================================================
+   CONFIGURAÇÃO DE ACESSIBILIDADE - ALTO CONTRASTE
+   ========================================================================== */
+
+/* Aplica fundo preto e texto branco no body inteiro */
+body.alto-contraste {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+/* Converte os blocos (caixas, cabeçalhos, cards e menus) para preto com borda branca */
+body.alto-contraste header,
+body.alto-contraste footer,
+body.alto-contraste aside,
+body.alto-contraste main,
+body.alto-contraste .welcome,
+body.alto-contraste .card,
+body.alto-contraste .search-section,
+body.alto-contraste .busca,
+body.alto-contraste .acessibilidade {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+    box-shadow: none !important;
+}
+
+/* Obriga todos os textos e elementos textuais a ficarem brancos */
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste p,
+body.alto-contraste span,
+body.alto-contraste li,
+body.alto-contraste strong,
+body.alto-contraste a,
+body.alto-contraste button,
+body.alto-contraste input {
+    color: #FFFFFF !important;
+}
+
+/* Modifica os campos de entrada de texto (Inputs) */
+body.alto-contraste input {
+    background: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+/* Cria efeito visual de inversão para links selecionados ou com mouse em cima */
+body.alto-contraste aside a:hover,
+body.alto-contraste aside a.active,
+body.alto-contraste .card a:hover,
+body.alto-contraste .acessibilidade button:hover {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+}
+
+/* Aplica destaque invertido (fundo branco com texto preto) para botões principais */
+body.alto-contraste button,
+body.alto-contraste .search-section button,
+body.alto-contraste .busca button,
+body.alto-contraste .btn-cartilha {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+}
+ /* ===== Barra de acessibilidade compacta (canto superior direito) ===== */
+        header {
+            position: relative;
+        }
+
+        .acessibilidade {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            display: flex;
+            gap: 4px;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+        }
+
+        .acessibilidade button {
+            padding: 3px 8px;
+            font-size: 11px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .acessibilidade button:hover,
+        .acessibilidade button:focus-visible {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        @media (max-width: 600px) {
+            .acessibilidade {
+                position: static;
+                justify-content: flex-end;
+                margin-top: 6px;
+            }
+        }
+
+        /* ===== Estilos da página Temas ===== */
+        .search-section {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin: 0 0 20px 0;
+            box-sizing: border-box;
+        }
+
+        .search-section input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #d6e9f7;
+            border-radius: 12px 0 0 12px;
+            font-size: 16px;
+        }
+
+        .search-section button {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 0 12px 12px 0;
+            background-color: #5aade0;
+            color: white;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+
+        .card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .card h3,
+        .card p {
+            margin: 0;
+        }
